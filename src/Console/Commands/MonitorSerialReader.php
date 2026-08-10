@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace OTGH\AccessControl\SerialWiegandAdapter\Console\Commands;
 
-use App\Models\Hardware\Reader;
-use App\Services\AccessControl\AccessControlSettingsRepository;
 use Illuminate\Console\Attributes\Description;
 use Illuminate\Console\Attributes\Signature;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Log;
+use OTGH\AccessControl\Core\Models\Hardware\Reader;
+use OTGH\AccessControl\Core\Services\AccessControl\AccessControlSettingsRepository;
 use OTGH\AccessControl\SerialWiegandAdapter\AccessControl\SerialReaderInputProcessor;
 use Symfony\Component\Process\Process;
 use Throwable;

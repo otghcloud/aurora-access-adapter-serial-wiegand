@@ -4,15 +4,15 @@ declare(strict_types=1);
 
 namespace OTGH\AccessControl\SerialWiegandAdapter;
 
-use App\Models\Hardware\Reader;
-use App\Services\AccessControl\AccessControlConfigurationRegistry;
-use App\Services\AccessControl\DiagnosticsNavigationRegistry;
-use App\Services\AccessControl\HealthCheckRegistry;
-use App\Services\AccessControl\SerialReaderDiagnosticsServiceInterface;
-use App\Services\Supervisor\SupervisorProgramRegistry;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
+use OTGH\AccessControl\Core\Models\Hardware\Reader;
+use OTGH\AccessControl\Core\Services\AccessControl\AccessControlConfigurationRegistry;
+use OTGH\AccessControl\Core\Services\AccessControl\DiagnosticsNavigationRegistry;
+use OTGH\AccessControl\Core\Services\AccessControl\HealthCheckRegistry;
+use OTGH\AccessControl\Core\Services\AccessControl\SerialReaderDiagnosticsServiceInterface;
+use OTGH\AccessControl\Core\Services\Supervisor\SupervisorProgramRegistry;
 use OTGH\AccessControl\SerialWiegandAdapter\AccessControl\SerialReaderInputProcessor;
 use OTGH\AccessControl\SerialWiegandAdapter\Console\Commands\MonitorSerialReader;
 use OTGH\AccessControl\SerialWiegandAdapter\Services\SerialReaderDiagnosticsService;

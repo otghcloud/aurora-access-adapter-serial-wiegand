@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace OTGH\AccessControl\SerialWiegandAdapter\AccessControl;
 
-use App\Models\Hardware\Reader;
-use App\Services\AccessControl\AccessControlSettingsRepository;
-use App\Services\AccessControl\HandleAccessRequest;
 use Illuminate\Support\Facades\Log;
+use OTGH\AccessControl\Core\Models\Hardware\Reader;
+use OTGH\AccessControl\Core\Services\AccessControl\AccessControlSettingsRepository;
+use OTGH\AccessControl\Core\Services\AccessControl\HandleAccessRequest;
 
 class SerialReaderInputProcessor
 {

@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace OTGH\AccessControl\SerialWiegandAdapter\Http\Controllers\Admin\Health;
 
-use App\Http\Controllers\Controller;
-use App\Services\AccessControl\SerialReaderDiagnosticsServiceInterface;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
+use OTGH\AccessControl\Core\Http\Controllers\Controller;
+use OTGH\AccessControl\Core\Services\AccessControl\SerialReaderDiagnosticsServiceInterface;
 
 class SerialDevicesController extends Controller
 {

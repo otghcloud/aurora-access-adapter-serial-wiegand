@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace OTGH\AccessControl\SerialWiegandAdapter\Services;
 
-use App\Models\Access\Event;
-use App\Models\Hardware\Reader;
-use App\Services\AccessControl\AccessControlSettingsRepository;
-use App\Services\AccessControl\SerialReaderDiagnosticsServiceInterface;
+use OTGH\AccessControl\Core\Models\Access\Event;
+use OTGH\AccessControl\Core\Models\Hardware\Reader;
+use OTGH\AccessControl\Core\Services\AccessControl\AccessControlSettingsRepository;
+use OTGH\AccessControl\Core\Services\AccessControl\SerialReaderDiagnosticsServiceInterface;
 
 class SerialReaderDiagnosticsService implements SerialReaderDiagnosticsServiceInterface
 {

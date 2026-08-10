@@ -1,0 +1,23 @@
+{
+    "name": "otghcloud/aurora-access-adapter-serial-wiegand",
+    "description": "Serial Wiegand reader adapter integration package for Access Control",
+    "type": "library",
+    "license": "MIT",
+    "require": {
+        "otghcloud/aurora-access-core": "*@dev"
+    },
+    "autoload": {
+        "psr-4": {
+            "OTGH\\AccessControl\\SerialWiegandAdapter\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "OTGH\\AccessControl\\SerialWiegandAdapter\\SerialWiegandAdapterServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}

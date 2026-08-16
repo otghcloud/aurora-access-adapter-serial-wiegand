@@ -7,6 +7,7 @@ namespace OTGH\AccessControl\SerialWiegandAdapter;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
+use OTGH\AccessControl\Core\Models\Hardware\Reader;
 use OTGH\AccessControl\Core\Services\AccessControl\AccessControlConfigurationRegistry;
 use OTGH\AccessControl\Core\Services\AccessControl\DiagnosticsNavigationRegistry;
 use OTGH\AccessControl\Core\Services\AccessControl\SerialReaderDiagnosticsServiceInterface;

@@ -7,10 +7,8 @@ namespace OTGH\AccessControl\SerialWiegandAdapter;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
-use OTGH\AccessControl\Core\Models\Hardware\Reader;
 use OTGH\AccessControl\Core\Services\AccessControl\AccessControlConfigurationRegistry;
 use OTGH\AccessControl\Core\Services\AccessControl\DiagnosticsNavigationRegistry;
-use OTGH\AccessControl\Core\Services\AccessControl\HealthCheckRegistry;
 use OTGH\AccessControl\Core\Services\AccessControl\SerialReaderDiagnosticsServiceInterface;
 use OTGH\AccessControl\Core\Services\Supervisor\SupervisorProgramRegistry;
 use OTGH\AccessControl\SerialWiegandAdapter\AccessControl\SerialReaderInputProcessor;
@@ -164,56 +162,6 @@ CONF;
             });
         });
 
-        $this->app->afterResolving(HealthCheckRegistry::class, function (HealthCheckRegistry $registry): void {
-            $registry->register(function ($service, ?string $readerIdentifier = null): array {
-                if (! Schema::hasTable('readers')) {
-                    return [];
-                }
-
-                $checks = [];
-
-                foreach (Reader::query()->orderBy('identifier', 'asc')->get(['identifier', 'config']) as $reader) {
-                    $inputFormat = strtolower((string) data_get($reader->config, 'general.input_format', 'wiegand'));
-                    if ($inputFormat !== 'wiegand') {
-                        continue;
-                    }
-
-                    $identifier = trim((string) $reader->identifier);
-                    if ($identifier === '') {
-                        continue;
-                    }
-
-                    $matches = function_exists('shell_exec')
-                        ? shell_exec(sprintf('pgrep -fa %s 2>/dev/null', escapeshellarg('artisan app:monitor-serial-reader '.$identifier)))
-                        : null;
-
-                    if (is_string($matches) && trim($matches) !== '') {
-                        $count = count(array_filter(array_map('trim', explode("\n", trim($matches)))));
-                        $checks[] = [
-                            'name' => 'Serial reader process '.$identifier,
-                            'status' => 'PASS',
-                            'details' => sprintf('pgrep matches=%d', $count),
-                        ];
-                    } else {
-                        $checks[] = [
-                            'name' => 'Serial reader process '.$identifier,
-                            'status' => 'WARN',
-                            'details' => 'No matching app:monitor-serial-reader process found via pgrep',
-                        ];
-                    }
-
-                    $devicePath = (string) data_get($reader->config, 'wiegand.device', '/dev/'.$identifier);
-                    $deviceReadable = $devicePath !== '' && file_exists($devicePath) && is_readable($devicePath);
-                    $checks[] = [
-                        'name' => 'Serial reader device '.$identifier,
-                        'status' => $deviceReadable ? 'PASS' : 'FAIL',
-                        'details' => sprintf('device=%s readable=%s', $devicePath !== '' ? $devicePath : '/dev/'.$identifier, $deviceReadable ? 'yes' : 'no'),
-                    ];
-                }
-
-                return $checks;
-            });
-        });
     }
 
     public function boot(): void

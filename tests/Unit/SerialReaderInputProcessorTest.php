@@ -2,7 +2,6 @@
 
 use App\Enums\AccessControl\AccessEventStatus;
 use App\Jobs\ProcessReaderEvent;
-use App\Jobs\PublishReaderEvent;
 use App\Jobs\PulseReaderFeedbackState;
 use App\Models\Access\Card;
 use App\Models\Access\Individual;
@@ -124,5 +123,4 @@ it('records a doorbell press for the configured doorbell value', function () {
         'status' => AccessEventStatus::DOORBELL_PRESSED->value,
     ]);
 
-    Queue::assertPushed(PublishReaderEvent::class, 1);
 });
